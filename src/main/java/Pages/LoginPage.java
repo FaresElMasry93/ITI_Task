@@ -1,43 +1,26 @@
-package pages;
-
-import org.openqa.selenium.By;
+package Pages;
 import org.openqa.selenium.WebDriver;
-
-
+import org.openqa.selenium.By;
 public class LoginPage {
+    private WebDriver driver;
+    private By usernameField = By.id("username");
+    private By passwordField = By.id("password");
+    private By loginButton = By.cssSelector("#login button");
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver){
         this.driver = driver;
     }
 
-    private WebDriver driver;
-    private By Email = By.id("edit-name");
-    private By Password = By.id("edit-pass");
-    private By Submit = By.id("edit-submit");
-    private By SearchBar = By.name("search");
-
-    public void setEmail(String username){
-
-        driver.findElement(Email).sendKeys(username);
+    public void setUsername(String username){
+        driver.findElement(usernameField).sendKeys(username);
     }
 
     public void setPassword(String password){
-
-        driver.findElement(Password).sendKeys(password);
-    }
-    public void submit(){
-
-        driver.findElement(Submit).click();
+        driver.findElement(passwordField).sendKeys(password);
     }
 
-
-     public Favourites searchText(String SearchText) {
-         driver.findElement(SearchBar).sendKeys(SearchText);
-      return new Favourites(driver);
-
-   }
-
-
-
-
+    public SecureAreaPage clickLoginButton(){
+        driver.findElement(loginButton).click();
+        return new SecureAreaPage(driver);
+    }
 }
